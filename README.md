@@ -1,11 +1,10 @@
-## Akses Admin:
-- Username : admin
-- password : indonesia
+<h1>Project KKP Sistem Pelaporan Safety</h1>
 
-## Akses Petugas:
-- Username : petugas
-- password : petugas
-
-## Akses User:
-- Username : user
-- password : user1234
+```bash
+Nama             : Ogie Kukuh Yuwono
+NIM              : 312110472
+Kelas            : TI. 21. C.6
+Mata Kuliah      : Kuliah Kerja Praktek
+Dosen Pengampu   : Ismasari Nawangsih, S.Kom., M.Kom.
+Dosen Pembimbing : Edora, S.Pd., M,Pd
+```
