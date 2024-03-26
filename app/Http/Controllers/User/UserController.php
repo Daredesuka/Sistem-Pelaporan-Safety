@@ -246,7 +246,7 @@ class UserController extends Controller
             'waktu_kejadian' => $data['waktu_kejadian'],
             'lokasi_kejadian' => $data['lokasi_kejadian'],
             // 'id_kategori' => $data['id_kategori'],
-            'foto' => $data['foto'] ?? 'assets/pelaporan/tambakmekar.png',
+            'foto' => $data['foto'] ?? 'assets/pelaporan/gambar.jpg',
             'status' => '0',
         ]);
 
@@ -333,7 +333,7 @@ class UserController extends Controller
             'foto' => $data['foto'] ?? $pelaporan->foto
         ]);
 
-        return redirect()->route('pekat.detail', $id_pelaporan);
+        return redirect()->route('pelaporan.detail', $id_pelaporan);
     }
 
     public function laporanDestroy(Request $request)

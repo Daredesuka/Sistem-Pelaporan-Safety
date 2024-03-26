@@ -31,8 +31,16 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
+				<div class="row align-items-center">
+				<div class="col">
                     <h3 class="mb-0">Data Laporan</h3>
                 </div>
+				<div class="col text-right">
+                    <a href="{{ url('admin/dashboard') }}" class="btn btn-sm btn-primary btn-lg">Kembali</a>
+                </div>
+				</div>
+				<div class="row mt-3">
+				<div class="col-lg-6"></div>
                 <!-- Light table -->
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush" id="pelaporanTable">
@@ -88,6 +96,7 @@
                             @endforeach
                         </tbody>
                     </table>
+				</div>
                 </div>
                 <!-- Card footer -->
                 <div class="card-footer py-4">

@@ -21,6 +21,9 @@
                         </ol>
                     </nav>
                 </div>
+				<div class="col-lg-6 col-5 text-right">
+                    <a href="{{ url('admin/dashboard') }}" class="btn btn-sm btn-neutral">Kembali</a>
+                </div>
             </div>
         </div>
     </div>
