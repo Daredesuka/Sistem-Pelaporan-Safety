@@ -17,7 +17,7 @@
                         <div class="card h-100">
                             <img src="{{ Storage::url($i->foto) }}" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title"><b>{{ $i->judul_laporan }}</b></h5>
+                                <h5 class="card-title"><b>{{ $i->nama_karyawan }}</b></h5>
                                 <p class="card-text">{{ $i->isi_laporan }}</p>
                                 <a href="{{ route('pelaporan.detail', $i->id_pelaporan) }}"
                                     class="btn btn-primary">Detail</a>

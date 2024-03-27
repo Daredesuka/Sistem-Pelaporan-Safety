@@ -48,7 +48,7 @@
                             <tr>
                                 <th scope="col" class="sort" data-sort="no">No</th>
                                 <th scope="col" class="sort" data-sort="tanggal">Tanggal</th>
-                                <th scope="col" class="sort" data-sort="name">Nama</th>
+                                <th scope="col" class="sort" data-sort="name">Nama Akun</th>
                                 <th scope="col" class="sort" data-sort="isi">Isi Laporan</th>
                                 <th scope="col" class="sort" data-sort="status">Status</th>
                                 <th scope="col" class="sort" data-sort="action">Aksi</th>

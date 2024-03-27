@@ -211,15 +211,17 @@ class UserController extends Controller
 
         $data = $request->all();
 
+        date_default_timezone_set('Asia/Bangkok');
+
         $validate = Validator::make($data, [
-            'judul_laporan' => ['required'],
+            'nama_karyawan' => ['required','min:3'],
             'status_karyawan' => ['required'],
             'departemen' => ['required'],
             'kategori_bahaya' => ['required'],
-            'isi_laporan' => ['required'],
-            'tgl_kejadian' => ['required'],
-            'waktu_kejadian' => ['required'],
-            'lokasi_kejadian' => ['required'],
+            'isi_laporan' => ['required','min:5'],
+            'tgl_kejadian' => ['required','date', 'after_or_equal:'.now()->format('d-F-Y') , 'before_or_equal:'.now()->format('d-F-Y')],
+            'waktu_kejadian' => ['required', 'after_or_equal:'.now()->format('H:i'), 'before_or_equal:'.now()->format('H:i')],
+            'lokasi_kejadian' => ['required','min:5'],
             // 'id_kategori' => ['required'],
         ]);
 
@@ -237,7 +239,7 @@ class UserController extends Controller
         $pelaporan = Pelaporan::create([
             'tgl_pelaporan' => date('Y-m-d h:i:s'),
             'nik' => Auth::guard('karyawan')->user()->nik,
-            'judul_laporan' => $data['judul_laporan'],
+            'nama_karyawan' => $data['nama_karyawan'],
             'status_karyawan' => $data['status_karyawan'],
             'departemen' => $data['departemen'],
             'kategori_bahaya' => $data['kategori_bahaya'],
@@ -299,7 +301,7 @@ class UserController extends Controller
         $data = $request->all();
 
         $validate = Validator::make($data, [
-            'judul_laporan' => ['required'],
+            'nama_karyawan' => ['required'],
             'status_karyawan' => ['required'],
             'departemen' => ['required'],
             'kategori_bahaya' => ['required'],
@@ -321,7 +323,7 @@ class UserController extends Controller
         $pelaporan = Pelaporan::where('id_pelaporan', $id_pelaporan)->first();
 
         $pelaporan->update([
-            'judul_laporan' => ['required'],
+            'nama_karyawan' => ['required'],
             'status_karyawan' => ['required'],
             'departemen' => ['required'],
             'kategori_bahaya' => ['required'],

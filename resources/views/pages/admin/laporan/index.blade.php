@@ -21,7 +21,7 @@
                         </ol>
                     </nav>
                 </div>
-				<div class="col-lg-6 col-5 text-right">
+                <div class="col-lg-6 col-5 text-right">
                     <a href="{{ url('admin/dashboard') }}" class="btn btn-sm btn-neutral">Kembali</a>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                                     <th>No</th>
                                     <th>Tanggal Pelaporan</th>
                                     <th>Nama</th>
-                                    <th>Judul Laporan</th>
+                                    <th>Nama Karyawan</th>
                                     <th>Status Karyawan</th>
                                     <th>Departemen</th>
                                     <th>Kategori Bahaya</th>
@@ -99,7 +99,7 @@
                                     <td>{{ $k += 1 }}.</td>
                                     <td>{{ Carbon\Carbon::parse($i->tgl_pelaporan)->format('d-m-Y') }}</td>
                                     <td>{{ $i->user->name }}</td>
-                                    <td>{{ $i->judul_laporan }}</td>
+                                    <td>{{ $i->nama_karyawan }}</td>
                                     <td>{{ $i->status_karyawan }}</td>
                                     <td>{{ $i->departemen }}</td>
                                     <td>{{ $i->kategori_bahaya }}</td>

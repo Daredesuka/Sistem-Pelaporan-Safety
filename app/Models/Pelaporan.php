@@ -16,7 +16,7 @@ class Pelaporan extends Model
     protected $fillable = [
         'tgl_pelaporan',
         'nik',
-        'judul_laporan',
+        'nama_karyawan',
         'status_karyawan',
         'departemen',
         'kategori_bahaya',

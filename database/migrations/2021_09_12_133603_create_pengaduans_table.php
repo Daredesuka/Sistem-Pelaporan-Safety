@@ -17,7 +17,7 @@ class CreatePengaduansTable extends Migration
             $table->id('id_pengaduan');
             $table->dateTime('tgl_pengaduan');
             $table->char('nik', 16);
-            $table->string('judul_laporan');
+            $table->string('nama_karyawan');
             $table->text('isi_laporan');
             $table->dateTime('tgl_kejadian');
             $table->text('lokasi_kejadian');

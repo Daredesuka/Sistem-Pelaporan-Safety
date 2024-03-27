@@ -17,11 +17,11 @@
                 <form action="{{ route('pelaporan.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group mb-3">
-                        <label for="judul_laporan" class="form-label">Nama Lengkap</label>
-                        <input type="text" value="{{ old('judul_laporan') }}" name="judul_laporan" id="judul_laporan"
+                        <label for="nama_karyawan" class="form-label">Nama Lengkap</label>
+                        <input type="text" value="{{ old('nama_karyawan') }}" name="nama_karyawan" id="nama_karyawan"
                             placeholder="Ketik Nama Lengkap"
-                            class="form-control @error('judul_laporan') is-invalid @enderror" required>
-                        @error('judul_laporan')
+                            class="form-control @error('nama_karyawan') is-invalid @enderror" required>
+                        @error('nama_karyawan')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -111,7 +111,7 @@
                         <label for="waktu_kejadian" class="form-label">Waktu Kejadian</label>
                         <input type="time" value="{{ old('waktu_kejadian') }}" name="waktu_kejadian" id="waktu_kejadian"
                             placeholder="Waktu Kejadian"
-                            class="form-control @error('waktu_kejadian') is-invalid @enderror" required>
+                            class="form-control @error('waktu_kejadian') is-invalid @enderror" required min="{{ \Carbon\Carbon::now()->format('H:i') }}">
                         @error('waktu_kejadian')
                         <div class="invalid-feedback">
                             {{ $message }}
