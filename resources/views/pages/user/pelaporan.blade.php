@@ -133,7 +133,7 @@
                     <div class="form-group mb-3">
                         <label for="foto" class="form-label">Foto Bukti</label>
                         <input type="file" name="foto" id="foto"
-                            class="form-control @error('file') is-invalid @enderror" required>
+                            class="form-control @error('file') is-invalid @enderror">
                         @error('file')
                         <div class="invalid-feedback">
                             {{ $message }}

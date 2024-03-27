@@ -248,7 +248,7 @@ class UserController extends Controller
             'waktu_kejadian' => $data['waktu_kejadian'],
             'lokasi_kejadian' => $data['lokasi_kejadian'],
             // 'id_kategori' => $data['id_kategori'],
-            'foto' => $data['foto'] ?? 'assets/pelaporan/gambar.jpg',
+            'foto' => $data['foto'] ?? 'assets/pelaporan/no-image.jpg',
             'status' => '0',
         ]);
 
@@ -316,8 +316,10 @@ class UserController extends Controller
             return redirect()->back()->withErrors($validate)->withInput();
         }
 
-        if ($request->file('foto')) {
+        if ($request->hasFile('foto')) {
             $data['foto'] = $request->file('foto')->store('assets/pelaporan', 'public');
+        } else {
+            $data['foto'] = 'assets/pelaporan/no-image.jpg'; // Atur gambar default di sini
         }
 
         $pelaporan = Pelaporan::where('id_pelaporan', $id_pelaporan)->first();

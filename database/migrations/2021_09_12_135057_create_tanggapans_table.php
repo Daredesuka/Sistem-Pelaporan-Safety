@@ -15,14 +15,14 @@ class CreateTanggapansTable extends Migration
     {
         Schema::create('tanggapan', function (Blueprint $table) {
             $table->id('id_tanggapan');
-            $table->unsignedBigInteger('id_pengaduan');
+            $table->unsignedBigInteger('id_pelaporan');
             $table->dateTime('tgl_tanggapan');
             $table->text('tanggapan');
             $table->unsignedBigInteger('id_petugas');
 
             $table->timestamps();
 
-            $table->foreign('id_pengaduan')->references('id_pengaduan')->on('pengaduan')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_pelaporan')->references('id_pelaporan')->on('pelaporan')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_petugas')->references('id_petugas')->on('petugas')->onDelete('cascade')->onUpdate('cascade');
         });
     }

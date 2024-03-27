@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Petugas;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Validation\Rule;
+
 
 class PetugasController extends Controller
 {
@@ -46,7 +48,7 @@ class PetugasController extends Controller
 
         $validate = Validator::make($data, [
             'nama_petugas' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'regex:/^\S*$/u', 'unique:petugas', 'unique:masyarakat,username'],
+            'username' => ['required', 'string', 'regex:/^\S*$/u', 'unique:petugas', 'unique:karyawan,username'],
             'password' => ['required', 'string', 'min:6'],
             'telp' => ['required'],
             'roles' => ['required', 'in:admin,petugas'],
@@ -113,7 +115,7 @@ class PetugasController extends Controller
 
         $validate = Validator::make($data, [
             'nama_petugas' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'regex:/^\S*$/u', Rule::unique('petugas')->ignore($id_petugas, 'id_petugas'), 'unique:masyarakat,username'],
+            'username' => ['required', 'string', 'regex:/^\S*$/u', Rule::unique('petugas')->ignore($id_petugas, 'id_petugas'), 'unique:karyawan,username'],
             'telp' => ['required'],
             'roles' => ['required', 'in:admin,petugas'],
         ]);

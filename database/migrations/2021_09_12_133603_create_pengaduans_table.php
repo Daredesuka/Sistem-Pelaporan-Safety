@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePengaduansTable extends Migration
+class CreatePelaporansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,24 @@ class CreatePengaduansTable extends Migration
      */
     public function up()
     {
-        Schema::create('pengaduan', function (Blueprint $table) {
-            $table->id('id_pengaduan');
-            $table->dateTime('tgl_pengaduan');
+        Schema::create('pelaporan', function (Blueprint $table) {
+            $table->id('id_pelaporan');
+            $table->dateTime('tgl_pelaporan');
             $table->char('nik', 16);
             $table->string('nama_karyawan');
+            $table->string('status_karyawan');
+            $table->string('departemen');
+            $table->string('kategori_bahaya');
             $table->text('isi_laporan');
             $table->dateTime('tgl_kejadian');
+            $table->time('waktu_kejadian');
             $table->text('lokasi_kejadian');
             $table->string('foto');
             $table->enum('status', ['0', 'proses', 'selesai']);
 
             $table->timestamps();
 
-            $table->foreign('nik')->references('nik')->on('masyarakat')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('nik')->references('nik')->on('karyawan')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -37,6 +41,6 @@ class CreatePengaduansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pengaduan');
+        Schema::dropIfExists('pelaporan');
     }
 }
