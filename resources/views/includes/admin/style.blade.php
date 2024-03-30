@@ -1,5 +1,5 @@
 <!-- Favicon -->
-<link rel="icon" href="{{ asset('assets/backend/img/brand/iconk3.png')}} " type="image/png">
+<link rel="icon" href="{{ asset('assets/backend/img/brand/iconk31.png')}} " type="image/png">
 <!-- Fonts -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
 <!-- Icons -->

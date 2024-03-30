@@ -111,7 +111,7 @@
                         <label for="waktu_kejadian" class="form-label">Waktu Kejadian</label>
                         <input type="time" value="{{ old('waktu_kejadian') }}" name="waktu_kejadian" id="waktu_kejadian"
                             placeholder="Waktu Kejadian"
-                            class="form-control @error('waktu_kejadian') is-invalid @enderror" required min="{{ \Carbon\Carbon::now()->format('H:i') }}">
+                            class="form-control @error('waktu_kejadian') is-invalid @enderror" required>
                         @error('waktu_kejadian')
                         <div class="invalid-feedback">
                             {{ $message }}

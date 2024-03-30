@@ -97,9 +97,87 @@
                             </div>
                         </div>
                 </div>
+                <div class="col-12 ">
+                    <a href="{{ url('/admin/laporan') }}">
+                        <div class="card card-stats">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Grafik Chart Total Semua
+                                            Laporan</h4>
+                                            <canvas class="embed-responsive-item" id="myChartt"
+                                                style="width: 100%; height: 400px;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<?php
+$th = [];
+$pelaporan_th = [];
+foreach ($tahun as $row) {
+    $th[] = $row->Tahun;
+    $pelaporan_th[] = $row->pay_total;
+}
+
+$bl = [];
+$pelaporan_bl = [];
+foreach ($bulan as $row) {
+    $bl[] = date("F", mktime(0, 0, 0, $row->Month, 1));
+    $pelaporan_bl[] = $row->pay_total;
+}
+?>
+
 @endsection
+@push('addon-script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"> </script>
+<script>
+var ctx = document.getElementById('myChartt').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: <?php echo json_encode($th)?>.flatMap(year => <?php echo json_encode($bl)?>.map(month => year +
+            ' - ' + month)),
+
+        datasets: [{
+            label: 'Laporan (Pertahun)',
+            data: <?php echo json_encode($pelaporan_th)?>,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+        }, {
+            label: 'Laporan (Perbulan)',
+            data: <?php echo json_encode($pelaporan_bl)?>,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                ticks: {
+                    autoSkip: true,
+                    maxTicksLimit: 12, // Jumlah maksimum label yang ditampilkan agar tidak terlalu padat
+                    maxRotation: 45, // Putar label secara miring
+                    minRotation: 0 // Putar label secara horizontal
+                },
+                categoryPercentage: 0.7, // Menyesuaikan lebar setiap bar
+                barPercentage: 0.9 // Menyesuaikan lebar setiap bar
+            }],
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+@endpush

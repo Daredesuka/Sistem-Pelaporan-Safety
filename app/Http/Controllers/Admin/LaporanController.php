@@ -10,8 +10,6 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 
 
-
-
 class LaporanController extends Controller
 {
     public function index() {
@@ -53,4 +51,5 @@ class LaporanController extends Controller
         $pdf = PDF::loadview('pages.admin.laporan.export',['pelaporan'=>$pelaporan]);
     	return $pdf->download('laporan.pdf');
     }
+
 }
