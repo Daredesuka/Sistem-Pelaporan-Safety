@@ -1,11 +1,10 @@
 @extends('layouts.admin')
-@section('title', 'Pelaporan')
-
+@section('title', 'Verifikasi dan Validasi Pelaporan')
 
 @push('addon-style')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
 @endpush
+
 @section('content')
 <!-- Header -->
 <div class="header bg-primary pb-6">
@@ -13,19 +12,13 @@
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    <h6 class="h2 text-white d-inline-block mb-0">Tanggapan</h6>
-                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-                        {{-- <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                    <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Lihat</li>
-                    <li class="breadcrumb-item"><a href="#">Tanggapan</a></li>
-                  </ol> --}}
-                    </nav>
+                    <h6 class="h2 text-white d-inline-block mb-0">Verifikasi dan Validasi Laporan</h6>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <!-- Page content -->
 <div class="container-fluid mt--6">
     <div class="row">
@@ -43,7 +36,6 @@
                                     <td>:</td>
                                     <td>{{ $pelaporan->id_pelaporan }}</td>
                                 </tr>
-
                                 <tr>
                                     <th>Tanggal Pelaporan</th>
                                     <td>:</td>
@@ -105,59 +97,18 @@
                                                 style="width: 200px;"></td>
                                 </tr>
                                 <tr>
-                                    <th>Hapus Pelaporan</th>
+                                    <th>Verifikasi dan Validasi</th>
                                     <td>:</td>
-                                    <td><a href="#" data-id_pelaporan="{{ $pelaporan->id_pelaporan }}"
-                                            class="btn btn-danger pelaporanDelete">Hapus</a></td>
+                                    <td>
+                                        <a href="#" data-id_pelaporan="{{ $pelaporan->id_pelaporan }}"
+                                            class="btn btn-primary pelaporan">Verifikasi</a>
+                                        <a href="#" data-id_pelaporan="{{ $pelaporan->id_pelaporan }}"
+                                            class="btn btn-danger pelaporanDelete">Hapus</a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-6 order-xl-2">
-            <div class="card">
-                <div class="card-header">
-                    <div class="row align-items-center">
-                        <div class="col-8">
-                            <h3 class="mb-0">Tanggapan</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('tanggapan')}} " method="POST">
-                        @csrf
-                        <input type="hidden" name="id_pelaporan" value="{{ $pelaporan->id_pelaporan }}">
-                        <!-- Tanggapan -->
-                        <div class="">
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <select name="status" class="form-control" id="status">
-                                    @if ($pelaporan->status == '0')
-                                    <option selected value="0">Pending</option>
-                                    <option value="proses">Proses</option>
-                                    <option value="selesai">Selesai</option>
-                                    @elseif($pelaporan->status == 'proses')
-                                    <option value="0">Pending</option>
-                                    <option selected value="proses">Proses</option>
-                                    <option value="selesai">Selesai</option>
-                                    @else
-                                    <option value="0">Pending</option>
-                                    <option value="proses">Proses</option>
-                                    <option selected value="selesai">Selesai</option>
-                                    @endif
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label">Tanggapan</label>
-                                <textarea rows="4" class="form-control" name="tanggapan" id="tanggapan"
-                                    placeholder="Ketik tanggapan">{{ $tanggapan->tanggapan ?? '' }}</textarea>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Kirim</button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -173,19 +124,71 @@ $(document).ready(function() {
 });
 </script>
 
-@if (session()->has('status'))
 <script>
-Swal.fire({
-    title: 'Pemberitahuan!',
-    text: "{{ Session::get('status') }}",
-    icon: 'success',
-    confirmButtonColor: '#28B7B5',
-    confirmButtonText: 'OK',
+$(document).on('click', '#del', function(e) {
+    let id = $(this).data('userId');
+    console.log(id);
 });
-</script>
-@endif
 
-<script>
+$(document).on('click', '.pelaporan', function(e) {
+    e.preventDefault();
+    let id_pelaporan = $(this).data('id_pelaporan');
+    Swal.fire({
+        title: 'Peringatan!',
+        text: "Apakah Anda yakin akan memverifikasi pelaporan?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#28B7B5',
+        confirmButtonText: 'OK',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "POST",
+                url: '{{ route("tanggapan") }}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id_pelaporan": id_pelaporan,
+                    "status": "proses",
+                    "tanggapan": ''
+                },
+                success: function(response) {
+                    if (response == 'success') {
+                        Swal.fire({
+                            title: 'Pemberitahuan!',
+                            text: "Pelaporan berhasil diverifikasi!",
+                            icon: 'success',
+                            confirmButtonColor: '#28B7B5',
+                            confirmButtonText: 'OK',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Mengarahkan kembali ke halaman sebelumnya dan melakukan refresh
+                                window.location.replace(document.referrer);
+                            }
+                        });
+                    }
+                },
+                error: function(data) {
+                    Swal.fire({
+                        title: 'Pemberitahuan!',
+                        text: "Pelaporan gagal diverifikasi!",
+                        icon: 'error',
+                        confirmButtonColor: '#28B7B5',
+                        confirmButtonText: 'OK',
+                    });
+                }
+            });
+        } else {
+            Swal.fire({
+                title: 'Pemberitahuan!',
+                text: "Pelaporan gagal diverifikasi!",
+                icon: 'error',
+                confirmButtonColor: '#28B7B5',
+                confirmButtonText: 'OK',
+            });
+        }
+    });
+});
+
 $(document).on('click', '.pelaporanDelete', function(e) {
     e.preventDefault();
     let id_pelaporan = $(this).data('id_pelaporan');
@@ -254,5 +257,4 @@ $(document).ready(function() {
     });
 });
 </script>
-
 @endpush

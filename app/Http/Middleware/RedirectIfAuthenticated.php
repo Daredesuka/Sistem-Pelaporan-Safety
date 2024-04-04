@@ -27,7 +27,7 @@ class RedirectIfAuthenticated
         //     }
         // }
 
-        if (!Auth::guard('karyawan')->check()) {
+        if (!Auth::guard('admin')->check()) {
             return $next($request);
         }
 

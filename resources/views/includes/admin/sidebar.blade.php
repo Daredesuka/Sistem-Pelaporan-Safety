@@ -51,12 +51,6 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('karyawan.index')}}">
-                            <i class="fas fa-users text-default"></i>
-                            <span class="nav-link-text">Karyawan</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('petugas.index')}} ">
                             <i class="fas fa-users-cog text-info"></i>
                             <span class="nav-link-text">Petugas</span>

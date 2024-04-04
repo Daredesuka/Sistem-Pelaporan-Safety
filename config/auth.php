@@ -41,11 +41,6 @@ return [
             'provider' => 'users',
         ],
 
-        'karyawan' => [
-            'driver' => 'session',
-            'provider' => 'karyawans',
-        ],
-
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
@@ -73,11 +68,6 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
-        ],
-
-        'karyawans' => [
-            'driver' => 'eloquent',
-            'model' => \App\Models\karyawan::class,
         ],
 
         'admins' => [

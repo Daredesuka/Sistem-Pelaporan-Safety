@@ -48,7 +48,7 @@ class PetugasController extends Controller
 
         $validate = Validator::make($data, [
             'nama_petugas' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'regex:/^\S*$/u', 'unique:petugas', 'unique:karyawan,username'],
+            'username' => ['required', 'string', 'regex:/^\S*$/u', 'unique:petugas'],
             'password' => ['required', 'string', 'min:6'],
             'telp' => ['required'],
             'roles' => ['required', 'in:admin,petugas'],
@@ -115,7 +115,7 @@ class PetugasController extends Controller
 
         $validate = Validator::make($data, [
             'nama_petugas' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'regex:/^\S*$/u', Rule::unique('petugas')->ignore($id_petugas, 'id_petugas'), 'unique:karyawan,username'],
+            'username' => ['required', 'string', 'regex:/^\S*$/u', Rule::unique('petugas')->ignore($id_petugas, 'id_petugas')],
             'telp' => ['required'],
             'roles' => ['required', 'in:admin,petugas'],
         ]);

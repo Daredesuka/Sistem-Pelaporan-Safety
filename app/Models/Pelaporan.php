@@ -15,20 +15,14 @@ class Pelaporan extends Model
 
     protected $fillable = [
         'tgl_pelaporan',
-        'nik',
         'nama_karyawan',
         'status_karyawan',
         'departemen',
         'kategori_bahaya',
         'isi_laporan',
         'tgl_kejadian',
-        'waktu_kejadian',
         'lokasi_kejadian',
         'foto',
         'status',
     ];
-
-    public function user() {
-        return $this->hasOne(karyawan::class, 'nik', 'nik');
-    }
 }

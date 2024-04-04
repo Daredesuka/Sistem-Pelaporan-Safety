@@ -15,6 +15,14 @@ class PelaporanController extends Controller
         
         return view('pages.admin.pelaporan.index', compact('pelaporan', 'status'));
     }
+
+    public function verif($id_pelaporan){
+        $pelaporan = Pelaporan::where('id_pelaporan', $id_pelaporan)->first();
+
+        return view('pages.admin.pelaporan.verif', [
+            'pelaporan' => $pelaporan,
+        ]);
+    }
     
     public function show($id_pelaporan) {
         $pelaporan = Pelaporan::where('id_pelaporan', $id_pelaporan)->first();

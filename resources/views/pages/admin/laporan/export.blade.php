@@ -5,7 +5,10 @@
     <title>Laporan Keselamatan Kerja</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 {{-- <body>
 	<style type="text/css">
 		table tr td,
@@ -20,6 +23,18 @@
 <body>
 
     <style>
+    @page {
+        size: landscape;
+    }
+
+    .page-break {
+        page-break-after: always;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
     .page-break {
         page-break-after: always;
     }
@@ -155,14 +170,12 @@
             <tr>
                 <th>No</th>
                 <th>Tanggal Pelaporan</th>
-                <th>Nama</th>
                 <th>Nama Karyawan</th>
                 <th>Status Karyawan</th>
                 <th>Departemen</th>
                 <th>Kategori Bahaya</th>
                 <th>Isi Laporan</th>
                 <th>Tanggal Kejadian</th>
-                <th>Waktu Kejadian</th>
                 <th>Lokasi Kejadian</th>
                 <th>Status</th>
             </tr>
@@ -172,14 +185,12 @@
             <tr>
                 <td>{{ $k += 1 }}.</td>
                 <td>{{ Carbon\Carbon::parse($i->tgl_pelaporan)->format('d-m-Y') }}</td>
-                <td>{{ $i->user->name }}</td>
                 <td>{{ $i->nama_karyawan }}</td>
                 <td>{{ $i->status_karyawan }}</td>
                 <td>{{ $i->departemen }}</td>
                 <td>{{ $i->kategori_bahaya }}</td>
                 <td>{{ $i->isi_laporan }}</td>
                 <td>{{ Carbon\Carbon::parse($i->tgl_kejadian)->format('d-m-Y') }}</td>
-                <td>{{ $i->waktu_kejadian }}</td>
                 <td>{{ $i->lokasi_kejadian }}</td>
                 <td>{{ $i->status }}</td>
             </tr>

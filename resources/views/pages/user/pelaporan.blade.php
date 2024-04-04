@@ -3,6 +3,8 @@
 @section('title', 'Pelaporan')
 
 @section('content')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 <main id="main" class="martop">
 
     <section class="inner-page">
@@ -28,26 +30,31 @@
                         @enderror
                     </div>
 
-                    <div class="form-group mb-3">
+                    <div class="form-group">
                         <label for="status_karyawan" class="form-label">Status Karyawan</label>
-                        <div class="input-group input-group-merge input-group-alternative" style="width: 100%;">
+                        <div class="input-group input-group-merge input-group-alternative mb-3">
                             <select value="{{ old('status_karyawan') }}" name="status_karyawan" id="status_karyawan"
                                 placeholder="Pilih Status Karyawan"
-                                class="form-select @error('status_karyawann') is-invalid @enderror" required>
-                                <option value="Pilih Status Karyawan">Pilih Status Karyawan</option>
+                                class="form-select @error('status_karyawan') is-invalid @enderror" required>
+                                <option value="">Pilih Status Karyawan</option>
                                 <option value="Tetap">Tetap/Permanent</option>
                                 <option value="Kontrak">Kontrak/Temporary</option>
                                 <option value="Pihak Ketiga">Pihak Ketiga (Kontraktor/Vendor/Auditor dll) / Third Party
                                 </option>
                             </select>
                         </div>
+                        @error('status_karyawan')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="departemen" class="form-label">Departemen</label>
                         <div class="input-group input-group-merge input-group-alternative mb-3">
                             <select value="{{ old('departemen') }}" name="departemen" id="departemen"
-                                placeholder="Pilih Status Karyawan"
+                                placeholder="Pilih Departemen"
                                 class="form-select @error('departemen') is-invalid @enderror" required>
                                 <option value="">Pilih Departemen</option>
                                 <option value="EHS">EHS</option>
@@ -58,6 +65,11 @@
                                 <option value="HR/IT/Purchasing/Finance/Sales">HR/IT/Purchasing/Finance/Sales</option>
                             </select>
                         </div>
+                        @error('departemen')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
 
                     <div class="form-group mb-3">
@@ -96,23 +108,11 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="tgl_kejadian" class="form-label">Tanggal Kejadian</label>
-                        <input type="date" value="{{ old('tgl_kejadian') }}" name="tgl_kejadian" id="tgl_kejadian"
-                            placeholder="Tanggal Kejadian"
-                            class="form-control @error('tgl_kejadian') is-invalid @enderror" required>
+                        <label for="tgl_kejadian" class="form-label">Tanggal dan Waktu Kejadian</label>
+                        <input type="datetime-local" value="{{ old('tgl_kejadian') }}" name="tgl_kejadian"
+                            id="tgl_kejadian" placeholder="Masukan Tanggal dan Waktu Kejadian"
+                            class="form-control bg-white @error('tgl_kejadian') is-invalid @enderror" required>
                         @error('tgl_kejadian')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label for="waktu_kejadian" class="form-label">Waktu Kejadian</label>
-                        <input type="time" value="{{ old('waktu_kejadian') }}" name="waktu_kejadian" id="waktu_kejadian"
-                            placeholder="Waktu Kejadian"
-                            class="form-control @error('waktu_kejadian') is-invalid @enderror" required>
-                        @error('waktu_kejadian')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -153,42 +153,19 @@
 @endsection
 
 @push('addon-script')
-@if (!auth('karyawan')->check())
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-Swal.fire({
-    title: 'Peringatan!',
-    text: "Anda harus login terlebih dahulu!",
-    icon: 'warning',
-    confirmButtonColor: '#28B7B5',
-    confirmButtonText: 'Masuk',
-    allowOutsideClick: false
-}).then((result) => {
-    if (result.isConfirmed) {
-        window.location.href = '{{ route("user.masuk") }}';
-    } else {
-        window.location.href = '{{ route("user.masuk") }}';
-    }
-});
+config = {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    altInput: true,
+    altFormat: "d-m-Y (H:i)",
+    disableMobile: "true"
+}
+flatpickr("input[type=datetime-local]", config);
 </script>
-@elseif(auth('karyawan')->user()->email_verified_at == null && auth('karyawan')->user()->telp_verified_at == null)
-<script>
-Swal.fire({
-    title: 'Peringatan!',
-    text: "Akun belum diverifikasi!",
-    icon: 'warning',
-    confirmButtonColor: '#28B7B5',
-    confirmButtonText: 'Ok',
-    allowOutsideClick: false
-}).then((result) => {
-    if (result.isConfirmed) {
-        window.location.href = '{{ route("user.masuk") }}';
-    } else {
-        window.location.href = '{{ route("user.masuk") }}';
-    }
-});
-</script>
-@endif
-
 @if (session()->has('pelaporan'))
 <script>
 Swal.fire({

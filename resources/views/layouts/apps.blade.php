@@ -69,12 +69,6 @@
             <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar --> --}}
 
-            @auth('karyawan')
-            <a href="{{ route('user.logout')}}" class="appointment-btn scrollto">Logout</a>
-            @else
-            <a href="{{ url('login')}}" class="appointment-btn scrollto">Login</a>
-            @endauth
-
         </div>
     </header><!-- End Header -->
 

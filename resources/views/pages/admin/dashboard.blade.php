@@ -79,14 +79,14 @@
                         </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <a href="{{ url('/admin/karyawan') }}">
+                    <a href="{{ url('/admin/petugas') }}">
                         <div class="card card-stats">
                             <!-- Card body -->
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="card-title text-uppercase text-muted mb-0">Total Karyawan</h5>
-                                        <span class="h2 font-weight-bold mb-0">{{ $karyawan }}</span>
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Total Petugas</h5>
+                                        <span class="h2 font-weight-bold mb-0">{{ $petugas }}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
@@ -97,21 +97,23 @@
                             </div>
                         </div>
                 </div>
-                <div class="col-12 ">
-                    <a href="{{ url('/admin/laporan') }}">
+                <div class="col-12">
+                    <a href="">
                         <div class="card card-stats">
+                            <!-- Card body -->
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="card-title text-uppercase text-muted mb-0">Grafik Chart Total Semua
-                                            Laporan</h4>
-                                            <canvas class="embed-responsive-item" id="myChartt"
-                                                style="width: 100%; height: 400px;"></canvas>
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Grafik Total Laporan
+                                            Bulanan</h5>
+                                        <canvas class="embed-responsive-item" id="bulanChart"
+                                            style="width: 100%; height: 400px;"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -137,44 +139,44 @@ foreach ($bulan as $row) {
 @push('addon-script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"> </script>
 <script>
-var ctx = document.getElementById('myChartt').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
+// Grafik untuk laporan bulanan
+var ctxBulan = document.getElementById('bulanChart').getContext('2d');
+var bulanChart = new Chart(ctxBulan, {
+    type: 'line', // Menggunakan grafik tipe line
     data: {
-        labels: <?php echo json_encode($th)?>.flatMap(year => <?php echo json_encode($bl)?>.map(month => year +
-            ' - ' + month)),
-
+        labels: <?php echo json_encode($bl) ?>.map(month => month), // Menggunakan bulan sebagai label
         datasets: [{
-            label: 'Laporan (Pertahun)',
-            data: <?php echo json_encode($pelaporan_th)?>,
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 1
-        }, {
             label: 'Laporan (Perbulan)',
-            data: <?php echo json_encode($pelaporan_bl)?>,
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
+            data: <?php echo json_encode($pelaporan_bl) ?>,
+            borderColor: 'rgba(54, 162, 235, 1)', // Warna garis
             borderWidth: 1
         }]
     },
     options: {
         scales: {
-            xAxes: [{
-                ticks: {
-                    autoSkip: true,
-                    maxTicksLimit: 12, // Jumlah maksimum label yang ditampilkan agar tidak terlalu padat
-                    maxRotation: 45, // Putar label secara miring
-                    minRotation: 0 // Putar label secara horizontal
-                },
-                categoryPercentage: 0.7, // Menyesuaikan lebar setiap bar
-                barPercentage: 0.9 // Menyesuaikan lebar setiap bar
-            }],
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
+                    beginAtZero: false, // Memulai sumbu y dari nilai minimal data
+                    min: 1,
+                    max: 10 // Nilai maximal sumbu y
                 }
             }]
+        },
+        plugins: {
+            annotation: {
+                annotations: [{
+                    type: 'line',
+                    mode: 'horizontal',
+                    scaleID: 'y-axis-0',
+                    value: 0,
+                    borderColor: 'rgb(75, 192, 192)',
+                    borderWidth: 2,
+                    label: {
+                        enabled: true,
+                        content: 'Baseline' // Label untuk baseline
+                    }
+                }]
+            }
         }
     }
 });
