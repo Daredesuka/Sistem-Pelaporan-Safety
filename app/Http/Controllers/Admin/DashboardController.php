@@ -12,6 +12,7 @@ class DashboardController extends Controller
 {
     public function index() {
         $data['pelaporan'] = Pelaporan::all()->count();
+        $data['pending'] = Pelaporan::where('status', 'pending')->count();
         $data['proses'] = Pelaporan::where('status', 'proses')->count();
         $data['selesai'] = Pelaporan::where('status', 'selesai')->count();
         $data['petugas'] = Petugas::count(); // Menghitung jumlah 

@@ -64,7 +64,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="count-box">
                         <i class='bx bx-list-check'></i>
-                        <span data-purecounter-start="pending" data-purecounter-end="{{ $pelaporan }} "
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $pelaporan }} "
                             data-purecounter-duration="1" class="purecounter"></span>
                         <p>Semua Laporan</p>
                     </div>
@@ -72,8 +72,17 @@
 
                 <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
                     <div class="count-box">
+                        <i class='bx bx-time'></i>
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $pending }}"
+                            data-purecounter-duration="1" class="purecounter"></span>
+                        <p>Pending</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+                    <div class="count-box">
                         <i class='bx bx-loader'></i>
-                        <span data-purecounter-start="pending" data-purecounter-end="{{ $proses }}"
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $proses }}"
                             data-purecounter-duration="1" class="purecounter"></span>
                         <p>Sedang Diproses</p>
                     </div>
@@ -82,7 +91,7 @@
                 <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                     <div class="count-box">
                         <i class='bx bx-check-circle'></i>
-                        <span data-purecounter-start="pending" data-purecounter-end="{{ $selesai }}"
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $selesai }}"
                             data-purecounter-duration="1" class="purecounter"></span>
                         <p>Selesai</p>
                     </div>

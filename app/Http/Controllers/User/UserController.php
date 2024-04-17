@@ -19,11 +19,13 @@ class UserController extends Controller
     public function index()
     {
         $pelaporan = Pelaporan::count();
+        $pending = Pelaporan::where('status', 'pending')->count();
         $proses = Pelaporan::where('status', 'proses')->count();
         $selesai = Pelaporan::where('status', 'selesai')->count();
 
         return view('home', [
             'pelaporan' => $pelaporan,
+            'pending' => $pending,
             'proses' => $proses,
             'selesai' => $selesai,
         ]);
