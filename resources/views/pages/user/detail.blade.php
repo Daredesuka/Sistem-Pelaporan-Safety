@@ -37,9 +37,16 @@
                                         <td>{{ $pelaporan->departemen }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Tanggal Kejadian</td>
+                                        <td>Tanggal Pelaporan</td>
                                         <td>:</td>
-                                        <td>{{ \Carbon\Carbon::parse($pelaporan->tgl_kejadian)->format('d-m-Y') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($pelaporan->tgl_pelaporan)->format('d-m-Y') }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal dan Waktu Kejadian</td>
+                                        <td>:</td>
+                                        <td>{{ \Carbon\Carbon::parse($pelaporan->tgl_kejadian)->format('d-m-Y, H:i') }}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
