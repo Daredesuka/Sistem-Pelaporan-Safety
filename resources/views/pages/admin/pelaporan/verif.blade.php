@@ -75,7 +75,7 @@
                                     <th>Status</th>
                                     <td>:</td>
                                     <td>
-                                        @if($pelaporan->status == '0')
+                                        @if($pelaporan->status == 'pending')
                                         <span class="text-sm badge badge-danger">Pending</span>
                                         @elseif($pelaporan->status == 'proses')
                                         <span class="text-sm badge badge-warning">Proses</span>

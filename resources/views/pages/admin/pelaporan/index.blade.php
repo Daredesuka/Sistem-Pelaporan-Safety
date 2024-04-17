@@ -71,7 +71,7 @@
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                @if($v->status == '0')
+                                                @if($v->status == 'pending')
                                                 <span class="text-sm badge badge-danger">Pending</span>
                                                 @elseif($v->status == 'proses')
                                                 <span class="text-sm badge badge-warning">Proses</span>
@@ -80,7 +80,7 @@
                                                 @endif
                                             </div>
                                         </td>
-                                        @if ($status == '0')
+                                        @if ($status == 'pending')
                                         <td><a href="{{ route('pelaporan.verif', $v->id_pelaporan)}}"
                                                 class="btn btn-info">Lihat</a></td>
                                         @else

@@ -26,8 +26,8 @@
                         </a>
                         <ul class="nav-item-child">
                             <li class="nav-item">
-                                <a class="nav-link {{ (request()->segment(2) == 'pelaporan/0') ? 'active' : '' }}"
-                                    href="{{ route('pelaporan.index', '0')}}">
+                                <a class="nav-link {{ (request()->segment(2) == 'pelaporan/pending') ? 'active' : '' }}"
+                                    href="{{ route('pelaporan.index', 'pending')}}">
                                     <i class="fas fa-clipboard-check text-info"></i> Verifikasi & Validasi
                                 </a>
                             </li>

@@ -128,7 +128,7 @@ class UserController extends Controller
             'lokasi_kejadian' => $data['lokasi_kejadian'],
             // 'id_kategori' => $data['id_kategori'],
             'foto' => $data['foto'] ?? 'assets/pelaporan/no-image.jpg',
-            'status' => '0',
+            'status' => 'pending',
         ]);
 
         if ($pelaporan) {
@@ -142,7 +142,7 @@ class UserController extends Controller
 
     public function laporan($who = '')
     {
-    $terverifikasi = Pelaporan::where('status', '!=', '0')->get()->count();
+    $terverifikasi = Pelaporan::where('status', '!=', 'pending')->get()->count();
     $proses = Pelaporan::where('status', 'proses')->get()->count();
     $selesai = Pelaporan::where('status', 'selesai')->get()->count();
 
@@ -151,7 +151,7 @@ class UserController extends Controller
     if ($who == 'saya') {
         $pelaporan = Pelaporan::orderBy('tgl_pelaporan', 'desc')->get();
     } else {
-        $pelaporan = Pelaporan::where('status', '!=', '0')->orderBy('tgl_pelaporan', 'desc')->get();
+        $pelaporan = Pelaporan::where('status', '!=', 'pending')->orderBy('tgl_pelaporan', 'desc')->get();
     }
 
     return view('pages.user.laporan', ['pelaporan' => $pelaporan, 'hitung' => $hitung, 'who' => $who]);

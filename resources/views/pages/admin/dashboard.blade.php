@@ -11,7 +11,7 @@
                     <h6 class="h2 text-white d-inline-block mb-0">Dashboard</h6>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <a href="{{ url('/admin/pelaporan/0') }}" class="btn btn-sm btn-neutral">Verifikasi</a>
+                    <a href="{{ url('/admin/pelaporan/pending') }}" class="btn btn-sm btn-neutral">Verifikasi</a>
                 </div>
             </div>
             <!-- Card stats -->

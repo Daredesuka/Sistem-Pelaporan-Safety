@@ -58,7 +58,7 @@
                         <img src="{{ Storage::url($pelaporan->foto) }}" alt="">
                         <h3>Status</h3>
                         <p>
-                            @if($pelaporan->status == '0')
+                            @if($pelaporan->status == 'pending')
                             <span class="text-sm text-white p-1 bg-danger">Pending</span>
                             @elseif($pelaporan->status == 'proses')
                             <span class="text-sm text-white p-1 bg-warning">Proses</span>

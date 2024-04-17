@@ -395,7 +395,6 @@
             color: rgba(107, 114, 128, var(--tw-text-opacity))
         }
     }
-    }
     </style>
 
     <style>

@@ -83,7 +83,7 @@
                                     <th>Status</th>
                                     <td>:</td>
                                     <td>
-                                        @if($pelaporan->status == '0')
+                                        @if($pelaporan->status == 'pending')
                                         <span class="text-sm badge badge-danger">Pending</span>
                                         @elseif($pelaporan->status == 'proses')
                                         <span class="text-sm badge badge-warning">Proses</span>
@@ -134,16 +134,16 @@
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select name="status" class="form-control" id="status">
-                                    @if ($pelaporan->status == '0')
-                                    <option selected value="0">Pending</option>
+                                    @if ($pelaporan->status == 'pending')
+                                    <option selected value="pending">Pending</option>
                                     <option value="proses">Proses</option>
                                     <option value="selesai">Selesai</option>
                                     @elseif($pelaporan->status == 'proses')
-                                    <option value="0">Pending</option>
+                                    <option value="pending">Pending</option>
                                     <option selected value="proses">Proses</option>
                                     <option value="selesai">Selesai</option>
                                     @else
-                                    <option value="0">Pending</option>
+                                    <option value="pending">Pending</option>
                                     <option value="proses">Proses</option>
                                     <option selected value="selesai">Selesai</option>
                                     @endif
