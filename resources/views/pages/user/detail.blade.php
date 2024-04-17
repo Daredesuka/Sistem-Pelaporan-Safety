@@ -7,10 +7,6 @@
 
     <section class="inner-page">
         <div class="container ">
-            <!-- <div class="title text-center mb-5">
-            <h3 class="fw-bold">Layanan Pelaporan Safety Perusahaan</h3>
-            <h5 class="fw-normal">Sampaikan laporan Anda langsung kepada perusahaan</h5>
-        </div> -->
 
             <div class="row">
                 <div class="col-md-4">

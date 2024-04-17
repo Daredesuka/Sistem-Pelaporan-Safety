@@ -39,7 +39,7 @@ class UserController extends Controller
 
     public function masuk()
     {
-        return view('pages.user.login');
+        return view('pages.admin.login');
     }
 
     public function login(Request $request)
@@ -105,7 +105,6 @@ class UserController extends Controller
             'isi_laporan' => ['required','min:5'],
             'tgl_kejadian' => ['required', 'before_or_equal:'.now()->format('Y-M-d H:i:s')],
             'lokasi_kejadian' => ['required','min:5'],
-            // 'id_kategori' => ['required'],
         ]);
 
         if ($validate->fails()) {
@@ -128,7 +127,6 @@ class UserController extends Controller
             'isi_laporan' => $data['isi_laporan'],
             'tgl_kejadian' => $data['tgl_kejadian'],
             'lokasi_kejadian' => $data['lokasi_kejadian'],
-            // 'id_kategori' => $data['id_kategori'],
             'foto' => $data['foto'] ?? 'assets/pelaporan/no-image.jpg',
             'status' => 'pending',
         ]);
@@ -186,7 +184,6 @@ class UserController extends Controller
             'isi_laporan' => ['required'],
             'tgl_kejadian' => ['required'],
             'lokasi_kejadian' => ['required'],
-            // 'id_kategori' => ['required'],
         ]);
 
         if ($validate->fails()) {
@@ -209,7 +206,6 @@ class UserController extends Controller
             'isi_laporan' => ['required'],
             'tgl_kejadian' => ['required'],
             'lokasi_kejadian' => ['required'],
-            // 'id_kategori' => $data['kategori_kejadian'],
             'foto' => $data['foto'] ?? $pelaporan->foto
         ]);
 

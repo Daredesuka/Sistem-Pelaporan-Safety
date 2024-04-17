@@ -21,14 +21,7 @@ Route::get('/laporan/{who?}', [\App\Http\Controllers\User\UserController::class,
 Route::get('/pelaporan-detail/{id_pelaporan}', [\App\Http\Controllers\User\UserController::class, 'detailPelaporan'])->name('pelaporan.detail');
 
 Route::get('/login',  [\App\Http\Controllers\User\UserController::class, 'masuk']);
-Route::get('/register',  [\App\Http\Controllers\User\UserController::class, 'daftar']);
-Route::get('/tentang',  [\App\Http\Controllers\User\UserController::class, 'tentang']);
 
-Route::middleware(['isGuest'])->group(function () {
-    // Login User
-    Route::get('/login',  [\App\Http\Controllers\User\UserController::class, 'masuk'])->name('user.masuk');
-    Route::post('/login/auth', [\App\Http\Controllers\User\UserController::class, 'login'])->name('user.login');
-});
 
 Route::prefix('admin')->group( function() {
     Route::middleware('isAdmin')->group( function() {
@@ -56,8 +49,9 @@ Route::prefix('admin')->group( function() {
 
      });
 
-
     Route::middleware(['isGuest'])->group(function () {
+        Route::get('/login',  [\App\Http\Controllers\Admin\AdminController::class, 'masuk'])->name('admin.masuk');
+        Route::post('/login/auth', [\App\Http\Controllers\Admin\AdminController::class, 'login'])->name('admin.login');
         Route::get('/', [\App\Http\Controllers\Admin\AdminController::class, 'formLogin'])->name('admin.masuk');
         Route::post('/login', [\App\Http\Controllers\Admin\AdminController::class, 'login'])->name('admin.login');
     });

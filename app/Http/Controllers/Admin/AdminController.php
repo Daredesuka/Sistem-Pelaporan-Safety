@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
     public function formLogin() {
-        return view('pages.user.login');
+        return view('pages.admin.login');
     }
 
     public function login(Request $request)

@@ -10,7 +10,8 @@
         <h1>Pelaporan Safety</h1>
         <a href="{{ route('pelaporan')}}" class="btn-get-started scrollto">Buat Laporan</a>
     </div>
-</section><!-- End Hero -->
+</section>
+<!-- End Hero -->
 
 <main id="main">
 
@@ -97,16 +98,7 @@
                     </div>
                 </div>
 
-                <!-- <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-            <div class="count-box">
-              <i class="fas fa-award"></i>
-              <span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Awards</p>
             </div>
-          </div> -->
-
-            </div>
-
         </div>
     </section><!-- End Counts Section -->
 

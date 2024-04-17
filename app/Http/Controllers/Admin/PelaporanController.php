@@ -11,7 +11,6 @@ class PelaporanController extends Controller
 {
     public function index($status) {
         $pelaporan = Pelaporan::where('status', $status)->orderBy('tgl_pelaporan', 'desc')->get();
-        // dd($satus);
         
         return view('pages.admin.pelaporan.index', compact('pelaporan', 'status'));
     }
