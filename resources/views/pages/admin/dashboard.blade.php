@@ -10,9 +10,6 @@
                 <div class="col-lg-6 col-7">
                     <h6 class="h2 text-white d-inline-block mb-0">Dashboard</h6>
                 </div>
-                <div class="col-lg-6 col-5 text-right">
-                    <a href="{{ url('/admin/petugas') }}" class="btn btn-sm btn-neutral">Petugas</a>
-                </div>
             </div>
             <!-- Card stats -->
             <!-- -->
@@ -33,7 +30,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                 </div>
@@ -76,7 +72,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                 </div>
@@ -122,68 +117,68 @@
         </div>
     </div>
 </div>
-
-<?php
-$th = [];
-$pelaporan_th = [];
-foreach ($tahun as $row) {
-    $th[] = $row->Tahun;
-    $pelaporan_th[] = $row->pay_total;
-}
-
-$bl = [];
-$pelaporan_bl = [];
-foreach ($bulan as $row) {
-    $bl[] = date("F", mktime(0, 0, 0, $row->Month, 1));
-    $pelaporan_bl[] = $row->pay_total;
-}
-?>
-
 @endsection
+
 @push('addon-script')
+
+@foreach ($bulan as $row)
+<?php
+    $bl[] = date("F", mktime(0, 0, 0, $row->Month, 1));
+    $pelaporan_bl[] = ($row->pay_total ?? 0) + ($row->pending ?? 0) + ($row->proses ?? 0) + ($row->selesai ?? 0); // Mengakses properti pay_total, jika tidak ada, maka default nilainya 0
+    $pending_bl[] = $row->pending ?? 0; // Mengakses properti pending, jika tidak ada, maka default nilainya 0
+    $proses_bl[] = $row->proses ?? 0; // Mengakses properti proses, jika tidak ada, maka default nilainya 0
+    $selesai_bl[] = $row->selesai ?? 0; // Mengakses properti selesai, jika tidak ada, maka default nilainya 0
+    ?>
+@endforeach
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"> </script>
 <script>
 // Grafik untuk laporan bulanan
 var ctxBulan = document.getElementById('bulanChart').getContext('2d');
 var bulanChart = new Chart(ctxBulan, {
-    type: 'line', // Menggunakan grafik tipe line
+    type: 'bar', // Menggunakan grafik tipe bar
     data: {
         labels: <?php echo json_encode($bl) ?>.map(month => month), // Menggunakan bulan sebagai label
         datasets: [{
-            label: 'Laporan (Perbulan)',
-            data: <?php echo json_encode($pelaporan_bl) ?>,
-            borderColor: 'rgba(54, 162, 235, 1)', // Warna garis
-            borderWidth: 1
-        }]
+                label: 'Semua Laporan',
+                data: <?php echo json_encode($pelaporan_bl) ?>,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)', // Warna latar belakang batang
+                borderColor: 'rgba(54, 162, 235, 1)', // Warna garis pinggir batang
+                borderWidth: 1
+            },
+            {
+                label: 'Pending',
+                data: <?php echo json_encode($pending_bl) ?>,
+                backgroundColor: 'rgba(255, 99, 132, 0.5)', // Warna latar belakang batang
+                borderColor: 'rgba(255, 99, 132, 1)', // Warna garis pinggir batang
+                borderWidth: 1
+            },
+            {
+                label: 'Diproses',
+                data: <?php echo json_encode($proses_bl) ?>,
+                backgroundColor: 'rgba(255, 206, 86, 0.5)', // Warna latar belakang batang
+                borderColor: 'rgba(255, 206, 86, 1)', // Warna garis pinggir batang
+                borderWidth: 1
+            },
+            {
+                label: 'Selesai',
+                data: <?php echo json_encode($selesai_bl) ?>,
+                backgroundColor: 'rgba(75, 192, 192, 0.5)', // Warna latar belakang batang
+                borderColor: 'rgba(75, 192, 192, 1)', // Warna garis pinggir batang
+                borderWidth: 1
+            }
+
+        ]
     },
     options: {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: false, // Memulai sumbu y dari nilai minimal data
-                    min: 1,
-                    max: 30 // Nilai maximal sumbu y
+                    beginAtZero: true // Memulai sumbu y dari nilai minimal data
                 }
             }]
-        },
-        plugins: {
-            annotation: {
-                annotations: [{
-                    type: 'line',
-                    mode: 'horizontal',
-                    scaleID: 'y-axis-0',
-                    value: 0,
-                    borderColor: 'rgb(75, 192, 192)',
-                    borderWidth: 2,
-                    label: {
-                        enabled: true,
-                        content: 'Baseline' // Label untuk baseline
-                    }
-                }]
-            }
         }
     }
 });
 </script>
-
 @endpush

@@ -21,9 +21,12 @@ class DashboardController extends Controller
             ->groupBy(DB::raw('EXTRACT(YEAR FROM tgl_kejadian)'))
             ->get(); // Menghitung jumlah pelaporan per tahun
         $data['bulan'] = DB::table("pelaporan")
-            ->select(DB::raw('EXTRACT(MONTH FROM tgl_kejadian) AS Month, COUNT(id_pelaporan) as pay_total'))
+            ->select(DB::raw('EXTRACT(MONTH FROM tgl_kejadian) AS Month, 
+                             SUM(CASE WHEN status = "pending" THEN 1 ELSE 0 END) AS pending,
+                             SUM(CASE WHEN status = "proses" THEN 1 ELSE 0 END) AS proses,
+                             SUM(CASE WHEN status = "selesai" THEN 1 ELSE 0 END) AS selesai'))
             ->groupBy(DB::raw('EXTRACT(MONTH FROM tgl_kejadian)'))
-            ->get(); // Menghitung jumlah pelaporan per bulan
+            ->get();
             
         return view('pages.admin.dashboard', $data);
 

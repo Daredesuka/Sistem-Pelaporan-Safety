@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Laporan')
 
-
 @push('addon-style')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 @endpush
