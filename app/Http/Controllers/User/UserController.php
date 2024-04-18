@@ -221,7 +221,6 @@ class UserController extends Controller
         return 'success';
     }
 
-
     public function password()
     {
         return view('user.password');

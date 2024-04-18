@@ -113,16 +113,16 @@
                             <input type="datetime-local" value="{{ old('tgl_kejadian') }}" name="tgl_kejadian"
                                 id="tgl_kejadian" placeholder="Masukan Tanggal dan Waktu Kejadian"
                                 class="form-control bg-white @error('tgl_kejadian') is-invalid @enderror" required>
+                            @error('tgl_kejadian')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                             <div class="input-group-append">
                                 <span class="input-group-text" style="font-size: 1.5em;"><i
                                         class="far fa-calendar-alt"></i></span>
                             </div>
                         </div>
-                        @error('tgl_kejadian')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
                     </div>
 
                     <div class="form-group mb-3">
