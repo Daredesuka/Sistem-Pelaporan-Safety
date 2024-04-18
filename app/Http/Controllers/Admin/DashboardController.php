@@ -25,11 +25,11 @@ class DashboardController extends Controller
                              SUM(CASE WHEN status = "pending" THEN 1 ELSE 0 END) AS pending,
                              SUM(CASE WHEN status = "proses" THEN 1 ELSE 0 END) AS proses,
                              SUM(CASE WHEN status = "selesai" THEN 1 ELSE 0 END) AS selesai'))
+            ->orWhereNull('deleted_at')
             ->groupBy(DB::raw('EXTRACT(MONTH FROM tgl_kejadian)'))
             ->get();
             
         return view('pages.admin.dashboard', $data);
-
     }
     
 }
