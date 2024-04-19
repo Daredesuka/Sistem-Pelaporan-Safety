@@ -4,7 +4,7 @@
         <!-- Brand -->
         <div class="sidenav-header  align-items-center">
             <a class="navbar-brand" href="{{ route('dashboard')}}">
-                <h2 class="text-primary text-uppercase">App-Pelaporan</h2>
+                <h2 class="text-primary text-uppercase">Web-Pelaporan</h2>
             </a>
         </div>
         <div class="navbar-inner">
