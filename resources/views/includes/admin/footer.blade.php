@@ -4,7 +4,7 @@
         <div class="row align-items-center justify-content-lg-between">
             <div class="col">
                 <div class="copyright text-center text-muted">
-                    &copy; <?php echo date('Y') ?> <a href="" class="font-weight-bold ml-1" target="_blank">PT. Younexa
+                    &copy; <?php echo date('Y') ?> <a class="font-weight-bold ml-1" target="_blank">PT. Younexa
                         Inti Materials</a>
                 </div>
             </div>

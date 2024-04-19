@@ -43,7 +43,7 @@
 
     @yield('content')
 
-    <!-- ======= Footer ======= -->
+    <!-- ======= Footer  ======= -->
     <footer id="footer">
 
         <div class="footer-top">
@@ -77,8 +77,8 @@
 
             <div class="me-md-auto my-auto text-center text-md-start">
                 <div class="copyright">
-                    &copy; Copyright <strong><span><a href="" target="_blank">PT. Younexa Inti
-                                Materials</a></span></strong>. Web Safety
+                    &copy; Copyright <strong><span><a target="_blank">PT. Younexa Inti
+                                Materials</a></span></strong>. Web Safety. 2024
                 </div>
             </div>
             <div class="social-links text-center text-md-right pt-3 pt-md-0">

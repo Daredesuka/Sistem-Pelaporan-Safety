@@ -21,7 +21,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table align-items-center table-flush" id="pelaporanTable"
+                                <table class="table align-items-center table-flush table-sm" id="pelaporanTable"
                                     style="background-color: #F6F9FC;">
                                     <thead class="thead-light">
                                         <tr>
@@ -37,8 +37,8 @@
                                     <tbody class="list">
                                         @forelse($pelaporan as $key => $laporan)
                                         <tr>
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $laporan->nama_karyawan }}</td>
+                                            <td class="text-center">{{ $key + 1 }}</td>
+                                            <td class="text-center">{{ $laporan->nama_karyawan }}</td>
                                             <td>{{ $laporan->departemen }}</td>
                                             <td>{{ $laporan->isi_laporan }}</td>
                                             <td>{{ \Carbon\Carbon::parse($laporan->tgl_kejadian)->format('d F Y, H:i') }}
