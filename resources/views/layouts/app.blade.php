@@ -91,7 +91,7 @@
 
             <div class="me-md-auto my-auto text-center text-md-start">
                 <div class="copyright">
-                    &copy; Copyright<strong><span><a target="_blank">PT. Younexa Inti
+                    &copy; Copyright <strong><span><a target="_blank">PT. Younexa Inti
                                 Materials</a></span></strong>. Web Safety. 2024
                 </div>
             </div>
