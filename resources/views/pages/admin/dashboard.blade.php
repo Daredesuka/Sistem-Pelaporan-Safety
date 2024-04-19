@@ -124,40 +124,39 @@
 @foreach ($bulan as $row)
 <?php
     $bl[] = date("F", mktime(0, 0, 0, $row->Month, 1));
-    $pelaporan_bl[] = ($row->pay_total ?? 0) + ($row->pending ?? 0) + ($row->proses ?? 0) + ($row->selesai ?? 0); // Mengakses properti pay_total, jika tidak ada, maka default nilainya 0
-    $pending_bl[] = $row->pending ?? 0; // Mengakses properti pending, jika tidak ada, maka default nilainya 0
-    $proses_bl[] = $row->proses ?? 0; // Mengakses properti proses, jika tidak ada, maka default nilainya 0
-    $selesai_bl[] = $row->selesai ?? 0; // Mengakses properti selesai, jika tidak ada, maka default nilainya 0
+    $pelaporan_bl[] = ($row->pay_total ?? 0) + ($row->pending ?? 0) + ($row->proses ?? 0) + ($row->selesai ?? 0); 
+    $pending_bl[] = $row->pending ?? 0; 
+    $proses_bl[] = $row->proses ?? 0; 
+    $selesai_bl[] = $row->selesai ?? 0; 
     ?>
 @endforeach
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"> </script>
 <script>
-// Grafik untuk laporan bulanan
 var ctxBulan = document.getElementById('bulanChart').getContext('2d');
 var bulanChart = new Chart(ctxBulan, {
-    type: 'bar', // Menggunakan grafik tipe bar
+    type: 'bar',
     data: {
-        labels: <?php echo json_encode($bl) ?>.map(month => month), // Menggunakan bulan sebagai label
+        labels: <?php echo json_encode($bl) ?>.map(month => month),
         datasets: [{
                 label: 'Pending',
                 data: <?php echo json_encode($pending_bl) ?>,
-                backgroundColor: 'rgba(255, 99, 132, 0.5)', // Warna latar belakang batang
-                borderColor: 'rgba(255, 99, 132, 1)', // Warna garis pinggir batang
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
             },
             {
                 label: 'Diproses',
                 data: <?php echo json_encode($proses_bl) ?>,
-                backgroundColor: 'rgba(255, 206, 86, 0.5)', // Warna latar belakang batang
-                borderColor: 'rgba(255, 206, 86, 1)', // Warna garis pinggir batang
+                backgroundColor: 'rgba(255, 206, 86, 0.5)',
+                borderColor: 'rgba(255, 206, 86, 1)',
                 borderWidth: 1
             },
             {
                 label: 'Selesai',
                 data: <?php echo json_encode($selesai_bl) ?>,
-                backgroundColor: 'rgba(75, 192, 192, 0.5)', // Warna latar belakang batang
-                borderColor: 'rgba(75, 192, 192, 1)', // Warna garis pinggir batang
+                backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1
             }
         ]

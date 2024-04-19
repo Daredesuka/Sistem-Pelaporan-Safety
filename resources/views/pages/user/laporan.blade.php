@@ -84,7 +84,7 @@
 <script>
 $(document).ready(function() {
     $('#pelaporanTable').DataTable({
-        "paging": true // Aktifkan pagination
+        "paging": true
     });
     $(document).on('click', '.popup-image', function(e) {
         e.preventDefault();
@@ -93,7 +93,7 @@ $(document).ready(function() {
             gallery: {
                 enabled: true
             },
-            closeBtnInside: true // Tampilkan tombol tutup di dalam popup
+            closeBtnInside: true
         }).magnificPopup('open');
     });
 });

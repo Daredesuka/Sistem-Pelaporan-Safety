@@ -163,7 +163,6 @@ $(document).on('click', '.pelaporan', function(e) {
                             confirmButtonText: 'OK',
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                // Mengarahkan kembali ke halaman sebelumnya dan melakukan refresh
                                 window.location.replace(document.referrer);
                             }
                         });
@@ -220,7 +219,6 @@ $(document).on('click', '.pelaporanDelete', function(e) {
                             confirmButtonText: 'OK',
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                // Mengarahkan kembali ke halaman sebelumnya dan melakukan refresh
                                 window.location.replace(document.referrer);
                             }
                         });
