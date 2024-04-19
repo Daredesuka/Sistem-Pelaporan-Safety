@@ -30,6 +30,8 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    @stack('prepend-style')
+    @stack('addon-style')
 
 </head>
 

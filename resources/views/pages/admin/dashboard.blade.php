@@ -140,13 +140,6 @@ var bulanChart = new Chart(ctxBulan, {
     data: {
         labels: <?php echo json_encode($bl) ?>.map(month => month), // Menggunakan bulan sebagai label
         datasets: [{
-                label: 'Semua Laporan',
-                data: <?php echo json_encode($pelaporan_bl) ?>,
-                backgroundColor: 'rgba(54, 162, 235, 0.5)', // Warna latar belakang batang
-                borderColor: 'rgba(54, 162, 235, 1)', // Warna garis pinggir batang
-                borderWidth: 1
-            },
-            {
                 label: 'Pending',
                 data: <?php echo json_encode($pending_bl) ?>,
                 backgroundColor: 'rgba(255, 99, 132, 0.5)', // Warna latar belakang batang
@@ -167,14 +160,22 @@ var bulanChart = new Chart(ctxBulan, {
                 borderColor: 'rgba(75, 192, 192, 1)', // Warna garis pinggir batang
                 borderWidth: 1
             }
-
         ]
     },
     options: {
         scales: {
-            yAxes: [{
+            xAxes: [{
+                stacked: true, // Menggunakan sumbu x sebagai stacked
                 ticks: {
-                    beginAtZero: true // Memulai sumbu y dari nilai minimal data
+                    beginAtZero: true, // Memulai sumbu x dari nilai minimal data
+                    stepSize: 2 // Menetapkan langkah sumbu x
+                }
+            }],
+            yAxes: [{
+                stacked: true, // Menggunakan sumbu y sebagai stacked
+                ticks: {
+                    beginAtZero: true, // Memulai sumbu y dari nilai minimal data
+                    stepSize: 2 // Menetapkan langkah sumbu x
                 }
             }]
         }

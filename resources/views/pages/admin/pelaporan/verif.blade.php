@@ -6,6 +6,7 @@
 @endpush
 
 @section('content')
+
 <!-- Header -->
 <div class="header bg-primary pb-6">
     <div class="container-fluid">
@@ -20,9 +21,9 @@
 </div>
 
 <!-- Page content -->
-<div class="container-fluid mt--6">
+<div class="container-fluid mt--6 overflow-hidden">
     <div class="row">
-        <div class="col-xl-12 order-xl-1">
+        <div class="col-xl-12 order-xl-1 overflow-hidden">
             <div class="card">
                 <div class="table-responsive">
                     <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
@@ -69,7 +70,8 @@
                                 <tr>
                                     <th>Tanggal dan Waktu Kejadian</th>
                                     <td>:</td>
-                                    <td>{{ \Carbon\Carbon::parse($pelaporan->tgl_kejadian)->format('d-m-Y, H:m') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($pelaporan->tgl_kejadian)->format('d-m-Y, H:m') }}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Status</th>
