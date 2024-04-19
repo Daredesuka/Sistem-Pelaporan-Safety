@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Petugas::create([
             'nama_petugas'  => 'Administrator',
             'username'  => 'admin',
-            'telp' => '082117564354',
+            'telp' => '082117564357',
             'password'  => bcrypt('indonesia'),
             'roles' => 'admin'
         ]);
