@@ -38,7 +38,7 @@
                                         @forelse($pelaporan as $key => $laporan)
                                         <tr>
                                             <td class="text-center">{{ $key + 1 }}</td>
-                                            <td class="text-center">{{ $laporan->nama_karyawan }}</td>
+                                            <td>{{ $laporan->nama_karyawan }}</td>
                                             <td>{{ $laporan->departemen }}</td>
                                             <td>{{ $laporan->isi_laporan }}</td>
                                             <td>{{ \Carbon\Carbon::parse($laporan->tgl_kejadian)->format('d F Y, H:i') }}
