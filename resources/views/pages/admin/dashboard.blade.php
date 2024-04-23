@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                                            <i class="fas fa-clock"></i> <!-- Mengganti ikon dengan jam -->
+                                            <i class="fas fa-clock"></i>
                                         </div>
                                     </div>
                                 </div>

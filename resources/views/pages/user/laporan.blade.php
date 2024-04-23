@@ -41,7 +41,7 @@
                                             <td>{{ $laporan->departemen }}</td>
                                             <td>{{ $laporan->kategori_bahaya }}</td>
                                             <td>{{ $laporan->isi_laporan }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($laporan->tgl_kejadian)->format('d F Y, H:i') }}
+                                            <td>{{ \Carbon\Carbon::parse($laporan->tgl_kejadian)->format('d F Y (H:i)') }}
                                             </td>
                                             <td>
                                                 @if($laporan->status == 'pending')
