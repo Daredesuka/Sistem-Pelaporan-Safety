@@ -4,7 +4,6 @@
 
 @push('addon-style')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
 @endpush
 
 @section('content')
@@ -28,10 +27,10 @@
                                             <th scope="col">No</th>
                                             <th scope="col">Nama Karyawan</th>
                                             <th scope="col">Departemen</th>
+                                            <th scope="col">Kategori Bahaya</th>
                                             <th scope="col">Isi Laporan</th>
                                             <th scope="col">Tanggal dan Waktu Kejadian</th>
                                             <th scope="col">Status</th>
-                                            <th scope="col">Foto</th>
                                         </tr>
                                     </thead>
                                     <tbody class="list">
@@ -40,6 +39,7 @@
                                             <td class="text-center">{{ $key + 1 }}</td>
                                             <td>{{ $laporan->nama_karyawan }}</td>
                                             <td>{{ $laporan->departemen }}</td>
+                                            <td>{{ $laporan->kategori_bahaya }}</td>
                                             <td>{{ $laporan->isi_laporan }}</td>
                                             <td>{{ \Carbon\Carbon::parse($laporan->tgl_kejadian)->format('d F Y, H:i') }}
                                             </td>
@@ -51,12 +51,6 @@
                                                 @else
                                                 <span class="text-sm text-white p-1 bg-success">Selesai</span>
                                                 @endif
-                                            </td>
-                                            <td>
-                                                <a href="{{ Storage::url($laporan->foto) }}" class="popup-image">
-                                                    <img src="{{ Storage::url($laporan->foto) }}" class="card-img"
-                                                        style="width: 100px;">
-                                                </a>
                                             </td>
                                         </tr>
                                         @empty
@@ -80,21 +74,10 @@
 @push('addon-script')
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 <script>
 $(document).ready(function() {
     $('#pelaporanTable').DataTable({
         "paging": true
-    });
-    $(document).on('click', '.popup-image', function(e) {
-        e.preventDefault();
-        $(this).magnificPopup({
-            type: 'image',
-            gallery: {
-                enabled: true
-            },
-            closeBtnInside: true
-        }).magnificPopup('open');
     });
 });
 </script>

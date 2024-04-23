@@ -121,6 +121,7 @@
 
 @push('addon-script')
 
+@if(isset($bulan) && !empty($bulan))
 @foreach ($bulan as $row)
 <?php
     $bl[] = date("F", mktime(0, 0, 0, $row->Month, 1));
@@ -130,6 +131,7 @@
     $selesai_bl[] = $row->selesai ?? 0; 
     ?>
 @endforeach
+@endif
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"> </script>
 <script>
@@ -137,24 +139,24 @@ var ctxBulan = document.getElementById('bulanChart').getContext('2d');
 var bulanChart = new Chart(ctxBulan, {
     type: 'bar',
     data: {
-        labels: <?php echo json_encode($bl) ?>.map(month => month),
+        labels: <?php echo json_encode($bl ?? []) ?>.map(month => month),
         datasets: [{
                 label: 'Pending',
-                data: <?php echo json_encode($pending_bl) ?>,
+                data: <?php echo json_encode($pending_bl ?? []) ?>,
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
             },
             {
                 label: 'Diproses',
-                data: <?php echo json_encode($proses_bl) ?>,
+                data: <?php echo json_encode($proses_bl ?? []) ?>,
                 backgroundColor: 'rgba(255, 206, 86, 0.5)',
                 borderColor: 'rgba(255, 206, 86, 1)',
                 borderWidth: 1
             },
             {
                 label: 'Selesai',
-                data: <?php echo json_encode($selesai_bl) ?>,
+                data: <?php echo json_encode($selesai_bl ?? []) ?>,
                 backgroundColor: 'rgba(75, 192, 192, 0.5)',
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1

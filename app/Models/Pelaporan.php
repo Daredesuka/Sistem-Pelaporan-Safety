@@ -27,4 +27,12 @@ class Pelaporan extends Model
         'status',
     ];
     protected $dates = ['deleted_at'];
+
+    protected static function booted()
+    {
+        static::deleting(function ($pelaporan) {
+            $pelaporan->status = 'terhapus';
+            $pelaporan->save();
+        });
+    }
 }
