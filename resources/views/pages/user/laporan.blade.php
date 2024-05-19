@@ -31,6 +31,7 @@
                                             <th scope="col">Isi Laporan</th>
                                             <th scope="col">Tanggal dan Waktu Kejadian</th>
                                             <th scope="col">Status</th>
+                                            <th scope="col">Tanggapan</th>
                                         </tr>
                                     </thead>
                                     <tbody class="list">
@@ -52,6 +53,18 @@
                                                 <span class="text-sm text-white p-1 bg-success">Selesai</span>
                                                 @endif
                                             </td>
+                                            <td>
+                                                @php
+                                                $tanggapan = App\Models\Tanggapan::where('id_pelaporan',
+                                                $laporan->id_pelaporan)->first();
+                                                @endphp
+                                                @if($tanggapan)
+                                                {{ $tanggapan->tanggapan }}
+                                                @else
+                                                Laporan Belum Di Verifikasi
+                                                @endif
+                                            </td>
+
                                         </tr>
                                         @empty
                                         <tr>

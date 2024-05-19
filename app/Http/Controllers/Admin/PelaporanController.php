@@ -50,4 +50,5 @@ class PelaporanController extends Controller
 
         return redirect()->route('pelaporan.index');
     }
+
 }
